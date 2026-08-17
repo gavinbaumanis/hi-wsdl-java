@@ -9,7 +9,7 @@ When a task requires **changes on two or more branches of the same Git repositor
 
 ## When this applies
 
-- Same-repo edits across release lines (e.g. `java-8-javax`, `java-11-jakarta`, `master`)
+- Same-repo edits across release lines (e.g. `master`, `java-11`)
 - Applying the same fix to several branches before commit
 - Comparing or building two branches side by side
 
@@ -40,12 +40,6 @@ When a task requires **changes on two or more branches of the same Git repositor
 ## Example (maintainer-local paths only)
 
 ```bash
-# In hi-wsdl-java primary clone (on java-11-jakarta-full-wsdl)
-git worktree add ../hi-wsdl-java-java-8-javax java-8-javax
-git worktree add ../hi-wsdl-java-java-11-jakarta java-11-jakarta
-
-# Apply edits in each ../hi-wsdl-java-* folder; commit per branch
-# When finished:
-git worktree remove ../hi-wsdl-java-java-8-javax
-git worktree remove ../hi-wsdl-java-java-11-jakarta
+git worktree add <path> master
+git worktree add <path> java-11
 ```

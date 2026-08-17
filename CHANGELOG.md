@@ -1,8 +1,8 @@
 # Change Log/Revision History
 
-= 1.6.4 =
-======
-- Maven **`au.gov.nehta:hi-wsdl`** **1.6.4** (Java **8** / **`javax`**, **14** `Service` stubs). Pair with **`hi-b2b-client`** **1.6.4**.
+= 1.6.4.1 =
+=========
+- Maven **`au.gov.nehta:hi-wsdl`** **1.6.4.1** (Java **8** / **`javax`**, **14** `Service` stubs). Pair with **`hi-b2b-client`** **1.6.4.1**.
 - Messages `searchIHI`: `electronicCommunication` before `dateOfBirth` so Consumer Search IHI (including batch sync) request XML matches the HI Service message schema.
 - Interface `searchIHI`: optional `electronicCommunication` before `dateOfBirth` and `australianUnstructuredStreetAddress` before `internationalAddress` on **`HI_ConsumerSearchIHIInterface-3.0`**.
 - **Tests:** **`SearchIhiPropOrderTest`** asserts Messages and Interface `searchIHI` `propOrder`. **`SearchForProviderIndividualPropOrderTest`** asserts HI31/HI33 `searchForProviderIndividual` `propOrder`.

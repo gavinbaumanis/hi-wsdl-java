@@ -13,7 +13,7 @@ Follow **`documentation-standards.mdc`** (implementor-first, Maven Central defau
 
 | Doc | Audience | Use |
 | --- | -------- | --- |
-| **README**, integrator guides | Implementors | **Maven version** (`1.6.4`), Central coordinates, runtime config |
+| **README**, integrator guides | Implementors | **Maven version** (`1.6.4.1`), Central coordinates, runtime config |
 | **CONTRIBUTING** | Contributors | Build from source, **Local builds**, OS-specific steps |
 | **MAINTAINERS**, **`.cursor/rules/`** | Maintainers | POM/wsimport internals; **branch mapping** only when labelled maintainer-only |
 

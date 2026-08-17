@@ -31,7 +31,7 @@ GPG signing is skipped by default (**`-Dgpg.skip=true`**). Release builds: **`-D
 
 ## Local builds (unpublished artifacts)
 
-When co-developing with **`hi-b2b-client-java`**, install matching **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** before the client **`verify`** (same SNAPSHOT or GA - **1.6.4** with **1.6.4** on this line; see **README.md** release table).
+When co-developing with **`hi-b2b-client-java`**, install matching **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** before the client **`verify`** (same SNAPSHOT or GA - **1.6.4.1** with **1.6.4.1** on this line; see **README.md** release table).
 
 ```text
 mvn -B "-Dgpg.skip=true" clean install
@@ -41,6 +41,6 @@ Integrators using GA versions from Maven Central do not need a sibling checkout.
 
 ## Repository hygiene
 
-- **Do not commit** keystores, production HI URLs, populated **`settings.xml`** with release credentials, or the licensed ADHA MCA **`wsdls/xml`** download tree (**`1.6.6`** / **`1.7.1`** regeneration). See **SECURITY.md**.
-- **`1.6.4`:** generated Java under **`src/main/java`** is frozen - this POM has no **`wsimport`** / XJC profile.
+- **Do not commit** keystores, production HI URLs, populated **`settings.xml`** with release credentials, or the licensed ADHA MCA **`wsdls/xml`** download tree (**1.7.1.1** / **`java-11`** regeneration). See **SECURITY.md**.
+- **`1.6.4.1`:** generated Java under **`src/main/java`** is frozen - this POM has no **`wsimport`** / XJC profile.
 - **Line endings:** the repository uses **LF** (see **`.gitattributes`**). On **Windows**, run **`git config core.autocrlf false`** in your clone before committing.
