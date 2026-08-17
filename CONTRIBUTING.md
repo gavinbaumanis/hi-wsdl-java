@@ -1,46 +1,67 @@
 # Contributing
 
-**Audience:** developers building or changing **this repository**. Integrators should use **README.md** and Maven Central coordinates. See **SECURITY.md** before committing.
+**Audience:** developers building or changing **this repository**. Integrators adding a Maven dependency should use **README.md**.
+
+---
 
 ## Prerequisites
 
-- **JDK 8+** with **`JAVA_HOME`** set.
+- **JDK 11+** with **`JAVA_HOME`** set.
 - **Maven 3.6+** on **`PATH`**.
+- Licensed HI WSDL/XSD tree at **`wsdls/xml/`** only when **regenerating** Jakarta stubs from WSDL (not required for default **`mvn verify`**). See **`wsdls/readme.txt`**.
+
+---
 
 ## Build
 
-From the project root:
+From the project root (directory containing **`pom.xml`**):
 
 ```text
 mvn -B "-Dgpg.skip=true" clean verify
 ```
 
+Or use **`build.ps1`**, **`build.sh`**, or **`build.bat`**. Set **`MVN_SETTINGS`** if you must pass **`-s`** to Maven.
+
 | Goal | Command |
 | ---- | ------- |
-| Compile + attach sources/Javadoc | `mvn -B "-Dgpg.skip=true" clean verify` |
+| Compile + unit tests | `mvn -B "-Dgpg.skip=true" clean verify` |
 | Skip tests | `mvn -B "-Dgpg.skip=true" clean verify "-DskipTests=true"` |
-| Install SNAPSHOT for sibling client build | `mvn -B "-Dgpg.skip=true" clean install` — required before **`hi-b2b-client-java`** **`verify`** when both repos are at matching **`*-SNAPSHOT`** versions |
+| Install snapshot locally (optional) | `mvn -B "-Dgpg.skip=true" clean install` - when co-developing with **`hi-b2b-client`** at the same **`${project.version}`** (**1.7.1.1** with **1.7.1.1** on this line; see **README.md**) |
+
+Default tests: **`GeneratedWsdlBindingsTest`**, **`HiWsdlArtifactTest`**, **`SearchIhiPropOrderTest`**, **`SearchForProviderIndividualPropOrderTest`** (offline smoke tests; no licensed WSDL tree or network required).
 
 GPG signing is skipped by default (**`-Dgpg.skip=true`**). Release builds: **`-Dgpg.skip=false`**.
 
-## Dependencies
+---
 
-- Compile: **`javax.xml.bind:jaxb-api`** and **`javax.xml.ws:jaxws-api`** only.
-- Runtime SOAP stack: **`com.sun.xml.ws:jaxws-rt`** **2.3.7** in **consuming** applications.
-- **`maven-enforcer-plugin`** rejects Metro **`webservices-*`** coordinates on the classpath.
+## Regenerating Jakarta sources
 
-## Local builds (unpublished artifacts)
+Generated Java under **`src/main/java`** is **committed**. Regeneration is maintainer-only and requires:
 
-When co-developing with **`hi-b2b-client-java`**, install matching **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** before the client **`verify`** (same SNAPSHOT or GA — see **README.md** release table).
+1. Licensed toolkit copied to **`wsdls/xml/`** (contains **`wsdl/`**, **`schema/`**, **`binding/`** — same layout as **hi-b2b-client-java**).
+2. Jakarta **`wsimport`** tooling aligned with **`MAINTAINERS.md`** (**`jaxws-rt`** 4.0.x, Java 11).
+
+Regenerate committed types:
 
 ```text
-mvn -B "-Dgpg.skip=true" clean install
+mvn -B clean -Pregenerate-sources generate-sources process-sources "-Dhi.wsdl.sync.generated=true"
+mvn -B "-Dgpg.skip=true" clean verify
 ```
 
-Integrators using GA versions from Maven Central do not need a sibling checkout. Maintainer notes: **MAINTAINERS.md**.
+When HI interfaces change, copy updated flat **`HI_*.wsdl`** from the licensed tree into **`src/main/resources/`** before committing.
+
+The **`regenerate-sources`** profile runs **26** **`wsimport`** executions with **`jaxb-xjc` 4.0.9** (correct schema-fragment Javadoc from XJC). Update **CHANGELOG.md** after regeneration.
+
+---
 
 ## Repository hygiene
 
-- **Do not commit** keystores, production HI URLs, populated **`settings.xml`** with release credentials, or the licensed ADHA MCA **`wsdls/xml`** download tree (**`1.6.5`** / **`1.7.0`** regeneration). See **SECURITY.md**.
-- **`1.6.3`:** generated Java under **`src/main/java`** is frozen — this POM has no **`wsimport`** / XJC profile.
-- **Line endings:** the repository uses **LF** (see **`.gitattributes`**). On **Windows**, run **`git config core.autocrlf false`** in your clone before committing.
+- **Do not commit:** populated **`local.properties`**, **`settings.xml`** (use **`settings.xml.example`** as a template only), the licensed **`wsdls/xml/`** tree, keystores under **`certs/`**, or production HI URLs. See **SECURITY.md**.
+- **Line endings:** LF per **`.gitattributes`**. On Windows: **`git config core.autocrlf false`** in this clone before committing.
+- Maintainer notes: **MAINTAINERS.md**.
+
+---
+
+## Copyright
+
+Copyright 2012 NEHTA. Copyright 2021-2026 ADHA. Apache License 2.0 — see **LICENSE.txt**.
