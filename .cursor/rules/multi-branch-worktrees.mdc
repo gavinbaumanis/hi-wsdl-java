@@ -3,9 +3,9 @@ description: Use git worktree when editing multiple branches of the same reposit
 alwaysApply: true
 ---
 
-# Multi-branch work — use git worktree
+# Multi-branch work - use git worktree
 
-When a task requires **changes on two or more branches of the same Git repository**, use **`git worktree`** — do **not** hop branches with `git checkout` while carrying uncommitted edits or stashes.
+When a task requires **changes on two or more branches of the same Git repository**, use **`git worktree`** - do **not** hop branches with `git checkout` while carrying uncommitted edits or stashes.
 
 ## When this applies
 
@@ -22,7 +22,7 @@ When a task requires **changes on two or more branches of the same Git repositor
 ## Workflow
 
 1. **Primary clone** stays on the main working branch; do not stash-and-hop to edit other branches.
-2. **Add a worktree per extra branch** (paths are local — never commit them to tracked docs):
+2. **Add a worktree per extra branch** (paths are local - never commit them to tracked docs):
 
    ```bash
    git worktree add ../<repo>-<branch-slug> <branch>
@@ -34,7 +34,7 @@ When a task requires **changes on two or more branches of the same Git repositor
 ## Do not
 
 - `git checkout` other branches with uncommitted changes (Git will block or force stash churn).
-- Stash the same files across multiple branch switches — causes merge conflicts on `stash pop`.
+- Stash the same files across multiple branch switches - causes merge conflicts on `stash pop`.
 - Put worktree directory paths in README, CONTRIBUTING, or other tracked docs (see repo **`worktrees.mdc`** / **`documentation-standards.mdc`**).
 
 ## Example (maintainer-local paths only)

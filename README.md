@@ -1,6 +1,6 @@
 # HI WSDL library
 
-Maven artifact **`au.gov.nehta:hi-wsdl`** — HI B2B **WSDL resources** and **pre-generated JAX-WS / JAXB types** for Healthcare Identifiers (HI) client development.
+Maven artifact **`au.gov.nehta:hi-wsdl`** - HI B2B **WSDL resources** and **pre-generated JAX-WS / JAXB types** for Healthcare Identifiers (HI) client development.
 
 For NEHTA facade clients, TLS, and signing, use **[hi-b2b-client-java](https://github.com/AuDigitalHealth/hi-b2b-client-java)**. This repository supplies the **generated type layer** and classpath WSDL only.
 
@@ -8,15 +8,15 @@ For NEHTA facade clients, TLS, and signing, use **[hi-b2b-client-java](https://g
 
 | Version | Java | XML stack | HI service scope |
 | ------- | ---- | --------- | ---------------- |
-| **1.6.4** | **8** | **`javax.*`** / EE4J **`jaxws-rt` 2.3.x** at runtime in consumers | Standard HI B2B — **14** `Service` stubs |
-| **1.6.6** | **11** | **Jakarta** / EE4J **`jaxws-rt` 4.0.x** at runtime in consumers | Standard HI B2B — **14** `Service` stubs |
-| **1.7.1** | **11** | **Jakarta** / EE4J **`jaxws-rt` 4.0.x** at runtime in consumers | Full MCA — **26** `Service` stubs |
+| **1.6.4** | **8** | **`javax.*`** / EE4J **`jaxws-rt` 2.3.x** at runtime in consumers | Standard HI B2B - **14** `Service` stubs |
+| **1.6.6** | **11** | **Jakarta** / EE4J **`jaxws-rt` 4.0.x** at runtime in consumers | Standard HI B2B - **14** `Service` stubs |
+| **1.7.1** | **11** | **Jakarta** / EE4J **`jaxws-rt` 4.0.x** at runtime in consumers | Full MCA - **26** `Service` stubs |
 
-**This checkout** builds **`1.6.4-SNAPSHOT`** (Java **8** / **`javax`**) — **committed** generated types with **14** standard HI B2B services (no **`wsimport`** in the build).
+This **1.6.4** line is Java **8** / **`javax`**, with **committed** generated types and **14** standard HI B2B services (no **`wsimport`** in the build).
 
 ## Dependency
 
-Published releases are consumed from **[Maven Central](https://central.sonatype.com/)** like any other dependency — no local build is required.
+Published releases are consumed from **[Maven Central](https://central.sonatype.com/)** like any other dependency - no local build is required.
 
 ```xml
 <dependency>
@@ -28,17 +28,17 @@ Published releases are consumed from **[Maven Central](https://central.sonatype.
 
 Add Eclipse EE4J **`com.sun.xml.ws:jaxws-rt`** **2.3.7** at runtime in your application when you invoke SOAP endpoints ( **`javax.xml.ws`** / **`javax.xml.bind`** ). This JAR does not bundle **`jaxws-rt`**. 
 
-Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** when both are on the classpath (GA versions in the table above).
+Align **`hi-wsdl`** and **`hi-b2b-client`** at the **same version** when both are on the classpath (**1.6.4** with **1.6.4**, **1.6.6** with **1.6.6**, **1.7.1** with **1.7.1**).
 
 ## Local development (SNAPSHOT)
 
-This repository builds **`1.6.4-SNAPSHOT`** on the Java **8** / **`javax`** line. **`hi-b2b-client-java`** declares **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** — install this types JAR **first** when both checkouts are unpublished:
+This repository builds **`1.6.4-SNAPSHOT`** on the Java **8** / **`javax`** line. **`hi-b2b-client-java`** declares **`au.gov.nehta:hi-wsdl`** at **`${project.version}`** - install this types JAR **first** when both checkouts are unpublished:
 
 ```text
-# 1) hi-wsdl (1.6.4-SNAPSHOT — this repository)
+# 1) hi-wsdl (1.6.4-SNAPSHOT - this repository)
 mvn -B "-Dgpg.skip=true" clean install
 
-# 2) hi-b2b-client (1.6.4-SNAPSHOT — matching version)
+# 2) hi-b2b-client (1.6.4-SNAPSHOT - matching version)
 mvn -B "-Dgpg.skip=true" clean verify
 ```
 
@@ -54,7 +54,7 @@ If Maven warns that a **GA** POM is missing (for example **`1.6.4`** before Cent
 
 ## Building from source
 
-**Audience:** contributors changing this repository — not integrators adding a Maven dependency.
+**Audience:** contributors changing this repository - not integrators adding a Maven dependency.
 
 Prerequisites: **JDK 8+**, **Maven 3.6+**. All JAX-WS/JAXB types are **committed** in **`src/main/java`**; the build compiles them only (no codegen, no licensed MCA schema tree required).
 
