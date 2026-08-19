@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master, java-11 ]
+    branches: [ java-8 ]
   pull_request:
-    branches: [ master, java-11 ]
+    branches: [ java-8 ]
 
 permissions:
   contents: read

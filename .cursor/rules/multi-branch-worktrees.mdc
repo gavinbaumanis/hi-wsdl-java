@@ -9,7 +9,7 @@ When a task requires **changes on two or more branches of the same Git repositor
 
 ## When this applies
 
-- Same-repo edits across release lines (e.g. `master`, `java-11`)
+- Same-repo edits across release lines (e.g. `java-8`, `java-11`)
 - Applying the same fix to several branches before commit
 - Comparing or building two branches side by side
 
@@ -40,6 +40,6 @@ When a task requires **changes on two or more branches of the same Git repositor
 ## Example (maintainer-local paths only)
 
 ```bash
-git worktree add <path> master
+git worktree add <path> java-8
 git worktree add <path> java-11
 ```
